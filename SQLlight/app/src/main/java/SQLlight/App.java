@@ -15,18 +15,19 @@ public class App {
     	int [] ids = {0, 1, 2};
     	String[] names = {"Abdullah", "Mohamed", "Maha"};
     	
-    	Class.forName("org.sqlite.JDBC");
+    	Class.forName("com.mysql.cj.jdbc.Driver");
     	
-    	String dbURI = "jdbc:sqlite:people.db";
+    	// String dbURI = "jdbc:sqlite:people.db";
+    	String dbURI = "jdbc:mysql://localhost:3306/people";
     	
-    	var conn = DriverManager.getConnection(dbURI);
+    	var conn = DriverManager.getConnection(dbURI, "root", "1LoveMySql");
     	
     	var stmt = conn.createStatement();
-    	conn.setAutoCommit(false);
+    	// conn.setAutoCommit(false);
     	
     	var sql = "create table if not exists user (id integer primary key, name text not null)";
     	
-    	stmt.execute(sql);
+    	// stmt.execute(sql);
     	
     	
     	/* sql = "insert into user (id, name) values (2, 'Haytham')";
@@ -56,7 +57,7 @@ public class App {
     		System.out.println("Id -- Name : " + id + " - " + name);
     	}
 
-    	sql = "drop table user";
+    	// sql = "drop table user";
     	stmt.execute(sql);
 
     	stmt.close();
